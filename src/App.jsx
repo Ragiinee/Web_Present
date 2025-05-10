@@ -8,7 +8,7 @@ import Charter_5 from './Cherter_5';
 export function Navbar() {
   return (
     <div>
-      <nav className="z-9999 bg-amber-200 shadow-lg">
+      <nav className="top-0 z-50 sticky bg-amber-200 shadow-lg">
         <div className="flex flex-wrap justify-between items-center mx-auto p-4 max-w-screen-xl">
           <a href="#Home" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="./img/logoVRU.png" className="h-16" alt="Logo VRU" />
@@ -34,7 +34,7 @@ export function Navbar() {
                 {/* แสดงในจอเล็ก (< md) เป็นเมนูปกติ */}
                 <ul className="md:hidden">
                   <li>
-                    <a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทนำ</a>
+                    <a href="#Charter_1" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทนำ</a>
                   </li>
                   <li>
                     <a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a>
@@ -62,7 +62,7 @@ export function Navbar() {
                     </svg>
                   </button>
                   <ul className="hidden z-9999 absolute bg-white shadow-md mt-2 rounded-md w-48 text-gray-700 text-sm" aria-labelledby="dropdownLargeButton" id="dropdownNavbar">
-                    <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">บทนำ</a></li>
+                    <li><a href="#Charter_1" className="block hover:bg-gray-100 px-4 py-2">บทนำ</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">วิธีดำเนินการ</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ผลการประเมิน</a></li>
@@ -184,6 +184,12 @@ export function Producer() {
       email: "nitiwit.keaw@vru.ac.th",
       img: "./img/Nithiwit.png",
     },
+    {
+      id: 4,
+      name: "พิทักษ์บุญ ขุนไกร",
+      email: "pitiakboon.kun@vru.ac.th",
+      img: "./img/Pitakboon.png"
+    }
   ];
 
   return (
@@ -222,7 +228,7 @@ export function Producer() {
 
       <div className="col-span-2">
         <h1 className="font-black text-2xl text-center">สมาชิกผู้จัดทำ</h1>
-        <div className="gap-4 grid grid-cols-3 p-4">
+        <div className="gap-4 grid grid-cols-1 md:grid-cols-4 p-4">
           {members.map((member) => (
             <div key={member.id} className="col-span-1">
               <button onClick={() => setActiveId(member.id)} className="w-full cursor-pointer">
@@ -547,7 +553,7 @@ export function Test_progarm() {
   ]
 
   return (
-    <div className='bg-amber-100 p-8 rounded-b-4xl w-full h-full md:h-[800px]' id='Test_progarm'>
+    <div className='bg-amber-100 p-8 rounded-4xl w-full h-full md:h-[800px]' id='Test_progarm'>
       <h1 className='my-2 font-black text-2xl'>การทดสอบระบบ</h1>
       <div className="flex justify-start items-center">
         {testing.map((testdata) => (
@@ -631,7 +637,7 @@ export function Test_progarm() {
 
 export function Home_page() {
   return (
-    <div className="relative w-full h-full lg:h-[800px]" id="Home">
+    <div className="relative w-full h-full lg:h-[900px]" id="Home">
       {/* วิดีโอ background */}
       <video
         className="top-0 left-0 absolute w-full h-full object-cover"
@@ -648,7 +654,7 @@ export function Home_page() {
       {/* เนื้อหาที่อยู่ด้านหน้าวิดีโอ */}
 
       <div className="z-10 relative flex-wrap justify-between items-center mx-auto p-4 max-w-screen-xl h-full">
-        <h1 className="my-8 font-bold text-black text-4xl">ระบบเติมรัก ❤ เพ็ทมาร์ท 🐈🐕</h1>
+        <h1 className="my-8 pt-16 font-bold text-black text-4xl">ระบบเติมรัก ❤ เพ็ทมาร์ท 🐈🐕</h1>
         <div className='flex mt-10 text-xl text-justify md:text-balance text-pretty'>
           <p className='h-full indent-8 leading-loose whitespace-normal'>
             โครงการเป็นส่วนหนึ่งของวิชาการพัฒนานวัตกรรมคอมพิวเตอร์และบริการชุมชน โครงการนี้มุ่งพัฒนาระบบบริหารจัดการร้านขายอาหารสัตว์เลี้ยงเติมรักเพ็ทมาร์ท      ตั้งอยู่ที่ตลาดสี่มุมเมือง จังหวัดปทุมธานี ซึ่งเผชิญปัญหาการจัดการสต็อกที่ไม่มีประสิทธิภาพ เช่น การขาดแคลน หรือ      ล้นสต็อก สินค้าหมดอายุ และความซับซ้อนของระบบเดิมที่ทำให้พนักงานใช้งานยาก ส่งผลต่อการจัดการข้อมูลในระบบ โครงการจึงมีเป้าหมายเพื่อปรับปรุงระบบหลังบ้าน (Back-End) และหน้าบ้าน (Front-End) โดยพัฒนาอินเทอร์เฟซที่ใช้งานง่ายและระบบจัดการสต็อกที่มีประสิทธิภาพ รวมถึงการเชื่อมต่อกับ LINE Official Account (LineOA) เพื่อให้ลูกค้าสามารถดูคะแนนสะสม ประวัติการสั่งซื้อ และจัดการข้อมูลสมาชิกได้สะดวกยิ่งขึ้น
@@ -656,12 +662,14 @@ export function Home_page() {
           </p>
         </div>
         <div className='group'>
-          <button className='flex justify-center items-center bg-amber-400 hover:bg-rose-900 my-20 rounded-full w-56 h-20 text-rose-900 hover:text-white'>
-            ดูเพิ่มเติม
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mx-3 w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-            </svg>
-          </button>
+          <a href="#Charter_1">
+            <button className='flex justify-center items-center bg-amber-400 hover:bg-rose-900 my-20 rounded-full w-56 h-20 text-rose-900 hover:text-white cursor-pointer'>
+              ดูเพิ่มเติม
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mx-3 w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+              </svg>
+            </button>
+          </a>
         </div>
       </div>
     </div>
@@ -673,11 +681,15 @@ export function Home_page() {
 export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Navbar */}
-      <header>
+      {/* Sticky Navbar */}
+      <header className="top-0 z-50 sticky w-full">
         <Navbar />
-        <Home_page />
       </header>
+
+      {/* Home Section (ไม่ควรอยู่ใน header) */}
+      <section >
+        <Home_page />
+      </section>
 
       {/* Main content */}
       <main className="flex-1">
