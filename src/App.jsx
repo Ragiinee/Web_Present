@@ -20,7 +20,7 @@ export function Navbar() {
           </a>
 
           {/* hamburger bar */}
-          <button data-collapse-toggle="navbar-default" type="button" className="md:hidden inline-flex justify-center items-center bg-transparent hover:bg-gray-100 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-900 w-10 h-10 text-amber-900 text-sm" aria-controls="navbar-default" aria-expanded="false">
+          <button data-collapse-toggle="navbar-default" type="button" className="md:hidden inline-flex z-50 justify-center items-center bg-transparent hover:bg-gray-100 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-900 w-10 h-10 text-amber-900 text-sm" aria-controls="navbar-default" aria-expanded="false">
             <span className="sr-only">Open main menu</span>
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -29,7 +29,7 @@ export function Navbar() {
           {/* hamburger bar */}
 
           <div className="hidden md:block w-full md:w-auto" id="navbar-default">
-            <ul className="flex md:flex-row flex-col rtl:space-x-reverse md:space-x-8 bg-gray-50 md:bg-transparent mt-4 md:mt-0 p-4 md:p-0 border border-amber-900 md:border-0 rounded-lg font-medium md:">
+            <ul className="flex md:flex-row flex-col rtl:space-x-reverse md:space-x-8 bg-gray-50 md:bg-transparent mt-4 md:mt-0 p-4 md:p-0 border border-amber-900 md:border-0 rounded-lg font-medium">
               <li>
                 {/* แสดงในจอเล็ก (< md) เป็นเมนูปกติ */}
                 <ul className="md:hidden">

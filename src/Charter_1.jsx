@@ -60,7 +60,7 @@ export function Layouy_CH1() {
         <div className="bg-amber-100 pb-18 w-full h-full md:h-[800px]">
             <div className="flex-warp justify-between items-center mx-auto pt-30 max-w-screen-xl">
                 <h1 className="mx-4 font-black text-5xl">{showH1} </h1>
-                <div className="flex justify-between items-center mt-15">
+                <div className="md:flex flex-row justify-between items-center mt-15">
                     {
                         data_cherter_1.map((item, index) => {
                             //check (true,false) for is Active
@@ -84,7 +84,7 @@ export function Layouy_CH1() {
                 </div>
 
                 <div className="grid grid-cols-1 my-12">
-                    <div className="col-span-1">
+                    <div className="col-span-1 mx-4">
                         <p className="h-full text-md text-justify indent-8 leading-loose whitespace-normal">
                             {textDescription}
                         </p>
