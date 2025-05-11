@@ -571,6 +571,9 @@
       background-color: color-mix(in oklab, var(--color-amber-900) 10%, transparent);
     }
   }
+  .bg-black {
+    background-color: var(--color-black);
+  }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }

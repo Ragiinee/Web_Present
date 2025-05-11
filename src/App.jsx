@@ -28,7 +28,7 @@ export function Navbar() {
           </button>
           {/* hamburger bar */}
 
-          <div className="hidden md:block w-full md:w-auto" id="navbar-default">
+          <div className="hidden md:block z-50 w-full md:w-auto" id="navbar-default">
             <ul className="flex md:flex-row flex-col rtl:space-x-reverse md:space-x-8 bg-gray-50 md:bg-transparent mt-4 md:mt-0 p-4 md:p-0 border border-amber-900 md:border-0 rounded-lg font-medium">
               <li>
                 {/* แสดงในจอเล็ก (< md) เป็นเมนูปกติ */}
@@ -682,7 +682,7 @@ export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Sticky Navbar */}
-      <header className="w-full">
+      <header className="top-0 z-40 sticky w-full">
         <Navbar />
       </header>
 
