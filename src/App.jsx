@@ -1,59 +1,75 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Charter_1 from './Charter_1';
 import Charter_2 from './Charter_2';
 import Charter_3 from './Cherter_3';
 import Charter_4 from './Cherter_4';
 import Charter_5 from './Cherter_5';
 
+
 export function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // ✨ ป้องกัน scroll เมื่อเมนูเปิด
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [isMenuOpen]);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <div>
-      <nav className="bg-amber-200 shadow-lg">
+    <>
+      <nav className="z-50 relative bg-amber-200 shadow-lg">
         <div className="flex flex-wrap justify-between items-center mx-auto p-4 max-w-screen-xl">
           <a href="#Home" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="./img/logoVRU.png" className="hidden md:block h-16" alt="Logo VRU" />
             <div className="flex flex-col">
-              <span className="self-left py-1 font-black text-lg md:text-xl whitespace-nowrap">ระบบบริหารจัดการร้านเติมรักเพ็ทมาร์ท</span>
-              <span className="self-left font-semibold text-xs whitespace-nowrap">คณะวิทยาศาสตร์และเทคโนโลยี สาขาวิทยการคอมพิวเตอร์</span>
-              <span className="self-left font-semibold text-xs whitespace-nowrap">มหาวิทยาลัยราชภัฎวไลยอลงกรณ์ในพระบรมราชูปถัมภ์</span>
+              <span className="py-1 font-black text-lg md:text-xl whitespace-nowrap">
+                ระบบบริหารจัดการร้านเติมรักเพ็ทมาร์ท
+              </span>
+              <span className="font-semibold text-xs whitespace-nowrap">
+                คณะวิทยาศาสตร์และเทคโนโลยี สาขาวิทยาการคอมพิวเตอร์
+              </span>
+              <span className="font-semibold text-xs whitespace-nowrap">
+                มหาวิทยาลัยราชภัฎวไลยอลงกรณ์ในพระบรมราชูปถัมภ์
+              </span>
             </div>
           </a>
 
-          {/* hamburger bar */}
-          <button data-collapse-toggle="navbar-default" type="button" className="md:hidden inline-flex z-50 justify-center items-center bg-transparent hover:bg-gray-100 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-900 w-10 h-10 text-amber-900 text-sm" aria-controls="navbar-default" aria-expanded="false">
+          {/* Hamburger Button */}
+          <button
+            onClick={toggleMenu}
+            type="button"
+            className="md:hidden inline-flex z-50 justify-center items-center bg-transparent hover:bg-gray-100 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-900 w-10 h-10 text-amber-900 text-sm"
+            aria-controls="navbar-default"
+            aria-expanded={isMenuOpen}
+          >
             <span className="sr-only">Open main menu</span>
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor"   strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+              <path stroke="currentColor" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
             </svg>
           </button>
-          {/* hamburger bar */}
 
-          <div className="hidden md:block z-50 w-full md:w-auto" id="navbar-default">
+          {/* Navigation Menu */}
+          <div className={`w-full md:w-auto ${isMenuOpen ? 'block' : 'hidden'} md:block z-50`} id="navbar-default">
             <ul className="flex md:flex-row flex-col rtl:space-x-reverse md:space-x-8 bg-gray-50 md:bg-transparent mt-4 md:mt-0 p-4 md:p-0 border border-amber-900 md:border-0 rounded-lg font-medium">
+              {/* เมนูบนจอเล็ก */}
               <li>
-                {/* แสดงในจอเล็ก (< md) เป็นเมนูปกติ */}
                 <ul className="md:hidden">
-                  <li>
-                    <a href="#Charter_1" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทนำ</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">วิธีดำเนินการ</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ผลการประเมิน</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทสรุปและข้อเสนอแนะ</a>
-                  </li>
+                  <li><a href="#Charter_1" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทนำ</a></li>
+                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
+                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">วิธีดำเนินการ</a></li>
+                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ผลการประเมิน</a></li>
+                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทสรุปและข้อเสนอแนะ</a></li>
                 </ul>
 
-                {/* แสดงเฉพาะหน้าจอใหญ่ (≥ md) เป็น dropdown */}
+                {/* เมนูบนจอใหญ่ */}
                 <div className="group hidden md:block relative">
                   <button
-                    id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
                     className="flex justify-between items-center rounded-sm font-black text-gray-900 hover:text-amber-700"
                   >
                     หัวข้องาน
@@ -61,7 +77,7 @@ export function Navbar() {
                       <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="m1 1 4 4 4-4" />
                     </svg>
                   </button>
-                  <ul className="hidden z-9999 absolute bg-white shadow-md mt-2 rounded-md w-48 text-gray-700 text-sm" aria-labelledby="dropdownLargeButton" id="dropdownNavbar">
+                  <ul className="hidden group-hover:block z-9999 absolute bg-white shadow-md mt-2 rounded-md w-48 text-gray-700 text-sm">
                     <li><a href="#Charter_1" className="block hover:bg-gray-100 px-4 py-2">บทนำ</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">วิธีดำเนินการ</a></li>
@@ -81,9 +97,17 @@ export function Navbar() {
         </div>
       </nav>
 
-    </div>
-  )
+      {/* Backdrop */}
+      {isMenuOpen && (
+        <div
+          className="z-40 fixed inset-0 bg-black/70 bg-opacity-50 backdrop-blur-sm"
+          onClick={closeMenu}
+        />
+      )}
+    </>
+  );
 }
+
 
 export function Footer() {
   return (
@@ -136,7 +160,7 @@ export function Footer() {
                 <div className="flex m-1">
                   <span className="mx-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 text-amber-900">
-                      <path   d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                      <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                     </svg>
                   </span>
                   <a href="mailto:offaof2002@gmail.com?subject " className="hover:text-amber-900">
@@ -215,7 +239,7 @@ export function Producer() {
             <div className="flex m-1">
               <span className="mx-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 text-amber-900">
-                  <path   d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                  <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
               </span>
               <a href="#" className="hover:text-amber-900">
@@ -369,7 +393,7 @@ export function Test_progarm() {
           icon: (
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
               className="w-5 h-5 text-gray-500 group-hover:text-gray-900 transition duration-75">
-              <path   d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
           ),
           sub_menu: [
