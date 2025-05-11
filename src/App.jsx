@@ -8,12 +8,12 @@ import Charter_5 from './Cherter_5';
 export function Navbar() {
   return (
     <div>
-      <nav className="top-0 z-50 sticky bg-amber-200 shadow-lg">
+      <nav className="bg-amber-200 shadow-lg">
         <div className="flex flex-wrap justify-between items-center mx-auto p-4 max-w-screen-xl">
           <a href="#Home" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="./img/logoVRU.png" className="h-16" alt="Logo VRU" />
+            <img src="./img/logoVRU.png" className="hidden md:block h-16" alt="Logo VRU" />
             <div className="flex flex-col">
-              <span className="self-left py-1 font-black text-xl whitespace-nowrap">ระบบบริหารจัดการร้านเติมรักเพ็ทมาร์ท</span>
+              <span className="self-left py-1 font-black text-lg md:text-xl whitespace-nowrap">ระบบบริหารจัดการร้านเติมรักเพ็ทมาร์ท</span>
               <span className="self-left font-semibold text-xs whitespace-nowrap">คณะวิทยาศาสตร์และเทคโนโลยี สาขาวิทยการคอมพิวเตอร์</span>
               <span className="self-left font-semibold text-xs whitespace-nowrap">มหาวิทยาลัยราชภัฎวไลยอลงกรณ์ในพระบรมราชูปถัมภ์</span>
             </div>
@@ -682,7 +682,7 @@ export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Sticky Navbar */}
-      <header className="top-0 z-50 sticky w-full">
+      <header className="top-0 z-40 sticky w-full">
         <Navbar />
       </header>
 
