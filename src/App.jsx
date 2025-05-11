@@ -88,10 +88,10 @@ export function Navbar() {
               <li className="md:hidden">
                 <ul>
                   <li><a href="#Charter_1" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทนำ</a></li>
-                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
-                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">วิธีดำเนินการ</a></li>
-                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ผลการประเมิน</a></li>
-                  <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทสรุปและข้อเสนอแนะ</a></li>
+                  <li><a href="#Charter_2" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
+                  <li><a href="#Charter_3" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">วิธีดำเนินการ</a></li>
+                  <li><a href="#Charter_4" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ผลการประเมิน</a></li>
+                  <li><a href="#Charter_5" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทสรุปและข้อเสนอแนะ</a></li>
                 </ul>
               </li>
 
@@ -109,10 +109,10 @@ export function Navbar() {
                 {isDropdownOpen && (
                   <ul className="z-9999 absolute bg-white shadow-md mt-2 rounded-md w-48 text-gray-700 text-sm">
                     <li><a href="#Charter_1" className="block hover:bg-gray-100 px-4 py-2">บทนำ</a></li>
-                    <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
-                    <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">วิธีดำเนินการ</a></li>
-                    <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ผลการประเมิน</a></li>
-                    <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">บทสรุปและข้อเสนอแนะ</a></li>
+                    <li><a href="#Charter_2" className="block hover:bg-gray-100 px-4 py-2">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
+                    <li><a href="#Charter_3" className="block hover:bg-gray-100 px-4 py-2">วิธีดำเนินการ</a></li>
+                    <li><a href="#Charter_4" className="block hover:bg-gray-100 px-4 py-2">ผลการประเมิน</a></li>
+                    <li><a href="#Charter_5" className="block hover:bg-gray-100 px-4 py-2">บทสรุปและข้อเสนอแนะ</a></li>
                   </ul>
                 )}
               </li>
@@ -170,7 +170,7 @@ export function Footer() {
           </div>
 
           <div className="col-span-1 mx-4 md:border-hidden border-t">
-            <h1 className="font-bold text-2xl text-center">ข้อมูลผู้พัฒนาเว็บไซต์</h1>
+            <h1 className="mt-4 md:mt-0 font-bold text-2xl text-center">ข้อมูลผู้พัฒนาเว็บไซต์</h1>
             <div className="flex justify-center items-center m-4">
               <div className="relative flex justify-center items-center bg-amber-900/10 hover:bg-amber-500 shadow-inner backdrop-blur-sm rounded-full w-44 h-44">
                 <img
@@ -607,7 +607,7 @@ export function Test_progarm() {
   ]
 
   return (
-    <div className='bg-amber-100 p-8 rounded-4xl w-full h-full md:h-[800px]' id='Test_progarm'>
+    <div className='bg-amber-100 p-8 rounded-b-4xl w-full h-full md:h-[800px]' id='Test_progarm'>
       <h1 className='my-2 font-black text-2xl'>การทดสอบระบบ</h1>
       <div className="flex justify-start items-center">
         {testing.map((testdata) => (
