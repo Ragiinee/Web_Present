@@ -682,7 +682,7 @@ export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Sticky Navbar */}
-      <header className="top-0 z-40 sticky w-full">
+      <header className="w-full">
         <Navbar />
       </header>
 
