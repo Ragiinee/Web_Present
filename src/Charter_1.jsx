@@ -1,6 +1,38 @@
 import { useState } from "react"
 import { Chart } from "react-google-charts"
 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+// แก้ปัญหา marker ไม่แสดงบนบาง browser
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+let DefaultIcon = L.icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+});
+L.Marker.prototype.options.icon = DefaultIcon;
+
+export function MapComponent() {
+    const position = [13.957166213076057, 100.61619630202938]; // พิกัดกรุงเทพฯ
+
+    return (
+        <MapContainer center={position} zoom={17} style={{ height: "500px", width: "100%" }} scrollWheelZoom={true} className="shadow-inner p-4 rounded-4xl">
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={position}>
+                <Popup>
+                    เติมรัก ❤ เพ็ทมาร์ท
+                </Popup>
+            </Marker>
+        </MapContainer>
+    );
+}
+
 // Gantt Chart
 const columns = [
     { type: "string", label: "TaskID" },
@@ -50,7 +82,7 @@ export const options = {
 
 function Introduction() {
     return (
-        <div className="col-span-1 mx-4">
+        <div className="col-span-1 mx-4 mt-4">
             <p className="h-full text-md text-justify indent-8 leading-loose whitespace-normal">
                 ร้านขายอาหารสัตว์เลี้ยง เติมรักเพ็ทมาร์ท ซึ่งตั้งอยู่ในตลาดสี่มุมเมือง มีประสบการณ์ดำเนินธุรกิจมากว่า 6 ปี แม้จะประสบความสำเร็จด้านยอดขาย แต่พบปัญหาในการบริหารจัดการสต็อกสินค้าที่ไม่เป็นระบบ ส่งผลให้เกิดความผิดพลาด เช่น สินค้าขาด/เกินจำนวน, สินค้าหมดอายุ และสินค้าคงคลังไม่ตรงกับความต้องการของลูกค้า
                 สาเหตุหลักเกิดจากความซับซ้อนของระบบเดิม และการที่พนักงานไม่เข้าใจขั้นตอนการจัดการสต็อก เช่น การรับเข้า ตัดยอด และอัปเดตข้อมูลอย่างถูกต้อง
@@ -88,8 +120,27 @@ export function DesciptionCH1({ Id }) {
         );
     } else if (Id === 2) {
         return (
-            <div>
-                
+            <div className="grid grid-cols-1 md:grid-cols-2 mt-4">
+                <div className="z-10 col-span-1 m-16 md:m-8">
+                    <MapComponent />
+                </div>
+                <div className="col-span-1 m-4 h-full text-md text-justify indent-8 leading-loose whitespace-normal">
+                    <p className="">
+                        ร้านอาหารสัตว์เติมรักเพ็ทมาร์ท ตั้งอยู่ที่ตลาดสี่มุมเมือง โซนขนมและอาหารแช่แข็ง 358/144-145 ถนนพหลโยธิน ตำบลคูคต อำเภอลำลูกกา จังหวัดปทุมธานี 12130
+                    </p>
+                    <ul >
+                        <p className="font-semibold underline">ขอบเขตผู้ใช้งานระบบ</p>
+                        <li>1. ประชากร ได้แก่ เจ้าของร้านจำนวน 1 คน พนักงานจำนวน 4 คน และลูกค้าที่เข้ามาซื้อสินค้าและบริการ </li>
+                        <li>2. กลุ่มตัวอย่างจำนวน 30 คน ได้แก่ เจ้าของร้านจำนวน 1 คน พนักงานจำนวน 4 คน และสุ่มลูกค้าที่เข้ามาซื้อสินค้าและบริการจำนวน 25 คน  </li>
+                    </ul>
+                    <p className="font-semibold underline">
+                        ขอบเขตด้านการพัฒนาระบบ
+                    </p>
+                    <ul>ระบบบริหารจัดการร้านค้าที่คณะผู้จัดทำตามความต้องการระบบของเจ้าของร้าน ได้ออกแบบระบบเป็น 2 ส่วนหลัก ๆ คือ 
+                        <li>1. ระบบ Point of Sale:POS ใช้งานโดย เจ้าของและพนักงาน</li>
+                        <li>2. ระบบ Customer relationship management:CRM ผ่าน LINE OA ใช้งานโดย สมาชิกร้านค้า</li>
+                    </ul>
+                </div>
             </div>
         );
     } else if (Id === 3) {
@@ -124,7 +175,7 @@ export function Layouy_CH1() {
         },
         {
             id_CH1: 2,
-            name_CH1: "ขอบเขตการทำงานของระบบ",
+            name_CH1: "ขอบเขตของโครงงาน",
         },
         {
             id_CH1: 3,
