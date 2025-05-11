@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Charter_1 from './Charter_1';
 import Charter_2 from './Charter_2';
 import Charter_3 from './Cherter_3';
@@ -8,18 +8,45 @@ import Charter_5 from './Cherter_5';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // สำหรับเมนูหัวข้องาน
 
-  // ✨ ป้องกัน scroll เมื่อเมนูเปิด
+  const dropdownRef = useRef(null); // 👉 ref สำหรับ dropdown
+
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove("overflow-hidden");
     }
   }, [isMenuOpen]);
 
+  // 👉 ปิด dropdown เมื่อคลิกนอก dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false); // ปิด dropdown ด้วย
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   return (
     <>
@@ -58,34 +85,38 @@ export function Navbar() {
           <div className={`w-full md:w-auto ${isMenuOpen ? 'block' : 'hidden'} md:block z-50`} id="navbar-default">
             <ul className="flex md:flex-row flex-col rtl:space-x-reverse md:space-x-8 bg-gray-50 md:bg-transparent mt-4 md:mt-0 p-4 md:p-0 border border-amber-900 md:border-0 rounded-lg font-medium">
               {/* เมนูบนจอเล็ก */}
-              <li>
-                <ul className="md:hidden">
+              <li className="md:hidden">
+                <ul>
                   <li><a href="#Charter_1" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทนำ</a></li>
                   <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
                   <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">วิธีดำเนินการ</a></li>
                   <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">ผลการประเมิน</a></li>
                   <li><a href="#" className="block hover:bg-gray-100 px-3 py-2 rounded-sm text-gray-900">บทสรุปและข้อเสนอแนะ</a></li>
                 </ul>
+              </li>
 
-                {/* เมนูบนจอใหญ่ */}
-                <div className="group hidden md:block relative">
-                  <button
-                    className="flex justify-between items-center rounded-sm font-black text-gray-900 hover:text-amber-700"
-                  >
-                    หัวข้องาน
-                    <svg className="ml-2 w-2.5 h-2.5" fill="none" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="m1 1 4 4 4-4" />
-                    </svg>
-                  </button>
-                  <ul className="hidden group-hover:block z-9999 absolute bg-white shadow-md mt-2 rounded-md w-48 text-gray-700 text-sm">
+              {/* เมนูบนจอใหญ่ (dropdown แบบคลิก) */}
+              <li className="hidden md:block relative" ref={dropdownRef}>
+                <button
+                  onClick={toggleDropdown}
+                  className="flex items-center font-black text-gray-900 hover:text-amber-700"
+                >
+                  หัวข้องาน
+                  <svg className="ml-2 w-2.5 h-2.5" fill="none" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="m1 1 4 4 4-4" />
+                  </svg>
+                </button>
+                {isDropdownOpen && (
+                  <ul className="z-9999 absolute bg-white shadow-md mt-2 rounded-md w-48 text-gray-700 text-sm">
                     <li><a href="#Charter_1" className="block hover:bg-gray-100 px-4 py-2">บทนำ</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">วิธีดำเนินการ</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">ผลการประเมิน</a></li>
                     <li><a href="#" className="block hover:bg-gray-100 px-4 py-2">บทสรุปและข้อเสนอแนะ</a></li>
                   </ul>
-                </div>
+                )}
               </li>
+
               <li>
                 <a href="#Test_progarm" className="block md:hover:bg-transparent hover:bg-gray-100 md:p-0 px-3 py-2 md:border-0 rounded-sm font-black text-gray-900 md:hover:text-amber-700">การทดสอบระบบ</a>
               </li>
@@ -107,7 +138,6 @@ export function Navbar() {
     </>
   );
 }
-
 
 export function Footer() {
   return (
