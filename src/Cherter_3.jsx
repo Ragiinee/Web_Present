@@ -275,7 +275,7 @@ export function Require_system() {
                 เพื่อตอบสนองความต้องการระบบใหม่
             </span>
 
-            <h3 className="font-bold underline">
+            <h3 className="font-bold text-center underline">
                 ขอบเขตการทำงาน
             </h3>
 
