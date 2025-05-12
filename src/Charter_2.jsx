@@ -175,7 +175,7 @@ export function Square() {
             <div className="md:col-span-1" key={index}>
                 <div className="flex justify-center items-center bg-gray-50 shadow-2xl rounded-xl h-full">
                     <div className="w-full h-[500px] overflow-hidden">
-                        <div className="w-full h-full card" 
+                        <div className="w-full h-full card"
                         >
                             <div className="relative w-full h-full transition-transform duration-1000 card__content" >
                                 {
@@ -185,7 +185,7 @@ export function Square() {
                                         >
                                             <div className='flex justify-center items-center w-full h-full'>
                                                 <div className='flex justify-center items-center w-50 h-50'>
-                                                    <img src={detail.img} alt="front_image" className='pt-12 w-full h-full' />
+                                                    <img src={detail.img} alt="front_image" className='w-full h-full' />
                                                 </div>
                                             </div>
                                             <p className="font-bold text-black text-lg">{detail.name_front}</p>
