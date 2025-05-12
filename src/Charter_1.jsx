@@ -184,7 +184,7 @@ export function Layouy_CH1() {
     ]
 
     return (
-        <div className="bg-amber-100 pb-18 w-full h-full">
+        <div className="bg-amber-100 pb-18 w-full h-full md:h-[1200px] lg:h-[1000px]">
             <div className="flex-warp justify-between items-center mx-auto pt-36 md:pt-30 max-w-screen-xl">
                 <h1 className="mx-4 font-black text-5xl">{showH1}</h1>
                 <div className="md:flex flex-row justify-between items-center mt-15">
