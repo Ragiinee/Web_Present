@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const Data_Ch3 = [
     {
@@ -76,14 +78,26 @@ const Data_Ch3 = [
             {
                 id_desciption: 1,
                 name_desciption: "การออกแบบ Diagarm",
-                desciption: "Diagarm",
+                desciption: <Desing />,
                 desing: [
                     {
-                        img: "use case",
+                        img: "./UI/use_case.png",
                         img_desciption: "อธิบายความสามารถ",
                     },
                     {
-                        img: "Class diagarm",
+                        img: "./UI/class_diagarm.png",
+                        img_desciption: "อธิบายความสามารถ"
+                    },
+                    {
+                        img: "./UI/diagram3.png",
+                        img_desciption: "อธิบายความสามารถ"
+                    },
+                    {
+                        img: "./UI/diagram4.png",
+                        img_desciption: "อธิบายความสามารถ"
+                    },
+                    {
+                        img: "./UI/diagram5.png",
                         img_desciption: "อธิบายความสามารถ"
                     }
                 ]
@@ -91,26 +105,26 @@ const Data_Ch3 = [
             {
                 id_desciption: 2,
                 name_desciption: "ส่วนนำเข้า",
-                desciption: "อธิบายออกแบบ ",
+                desciption: <Desing />,
                 desing: [//เปลี่ยน
                     {
-                        img: "1",
+                        img: "./UI/input1.png",
                         img_desciption: "รายงาน 3",
                     },
                     {
-                        img: "2",
+                        img: "./UI/input2.png",
                         img_desciption: "ใบเสร็จ",
                     },
                     {
-                        img: "3",
+                        img: "./UI/input3.png",
                         img_desciption: "หน้าจอรายงานการขาย",
                     },
                     {
-                        img: "4",
+                        img: "./UI/input4.png",
                         img_desciption: "หน้าจอการขายสินค้า",
                     },
                     {
-                        img: "5",
+                        img: "./UI/input5.png",
                         img_desciption: "หน้าจอเมนู Line OA",
                     }
                 ]
@@ -118,34 +132,33 @@ const Data_Ch3 = [
             {
                 id_desciption: 3,
                 name_desciption: "ส่วนนำออก",
-                desciption: "",
+                desciption: <Desing />,
                 desing: [
                     {
-                        img: "1",
-                        img_desciption: "รายงาน 3",
+                        img: "./UI/output1.png",
+                        img_desciption: "a 3",
                     },
                     {
-                        img: "2",
-                        img_desciption: "ใบเสร็จ",
+                        img: "./UI/output2.png",
+                        img_desciption: "b",
                     },
                     {
-                        img: "3",
-                        img_desciption: "หน้าจอรายงานการขาย",
+                        img: "./UI/output3.png",
+                        img_desciption: "v",
                     },
                     {
-                        img: "4",
-                        img_desciption: "หน้าจอการขายสินค้า",
+                        img: "./UI/output4.png",
+                        img_desciption: "w",
                     },
                     {
-                        img: "5",
-                        img_desciption: "หน้าจอเมนู Line OA",
+                        img: "./UI/output5.png",
+                        img_desciption: "r r OA",
                     }
                 ]
             },
         ]
     }
 ]
-
 
 export function Layouy_CH3() {
     //ปุ่ม
@@ -211,6 +224,7 @@ export function Layouy_CH3() {
                                                     //Class Buttom
                                                     setButtomClick([detail.desciption, detail.pdf_IOC, detail.pdf_form]);
                                                     //มีอีก 2 ตัว
+                                                    NumberActivity = detail.id_desciption
                                                 }
                                                 }
                                             >{detail.name_desciption}
@@ -223,7 +237,7 @@ export function Layouy_CH3() {
 
                             }
                             <div className="flex flex-col justify-between gap-4 col-span-1 md:col-span-2 mx-8">
-                                <div className="col-span-1 md:col-span-2 text-md text-justify leading-loose whitespace-normal">
+                                <div className="col-span-1 md:col-span-2 h-full text-md text-justify leading-loose whitespace-normal">
                                     {ButtonClick[0]}
                                 </div>
 
@@ -309,6 +323,94 @@ export function Require_system() {
         </div>
 
     )
+}
+let NumberActivity = null
+export function Desing() {
+
+    console.log(NumberActivity);
+
+
+    const responsive = {
+        superLargeDesktop: {
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
+    const Datadesing = Data_Ch3.find((ID) => ID.id_CH3 === 3) || { data: [] };
+    const ImageDesing = Datadesing.data.find((item) => item.id_desciption === NumberActivity)
+
+    const [popupImg, setPopupImg] = useState(null);
+
+    const openPopup = (img) => setPopupImg(img);
+    const closePopup = () => setPopupImg(null);
+
+    return (
+        <div className="w-full h-full">
+            <Carousel
+                focusOnSelect={true}
+                responsive={responsive}
+                swipeable
+                draggable={false}
+                showDots
+                infinite
+                autoPlay={false}
+                keyBoardControl
+                containerClass="w-full  carousel-container"
+                dotListClass="custom-dot-list "
+                itemClass=" h-[450px]"
+            >
+                {/* ตอนนี้ desing.data จะมี array ให้ map ได้เลย */}
+                {ImageDesing.desing.map((item, idx) => (
+                    <div key={idx} className="flex justify-center items-center p-4 rounded-xl w-full h-full">
+                        <div onClick={() => openPopup(item.img)}
+                            className="hover:z-10 bg-white shadow-md hover:shadow-xl mx-4 rounded-xl w-full h-full overflow-hidden hover:scale-105 transition-transform duration-300 transform"
+                        >
+                            <img
+                                src={item.img}
+                                alt={item.img_desciption}
+                                className="w-full h-full"
+                            />
+                        </div>
+                    </div>
+                ))}
+            </Carousel>
+
+            {/* ✅ Popup */}
+            {popupImg && (
+                <div
+                    className="z-[99999] fixed inset-0 flex justify-center items-center bg-black/50 bg-opacity-70 p-4"
+                    onClick={closePopup}
+                >
+                    <div className="relative w-[100%] max-w-4xl">
+                        <img
+                            src={popupImg}
+                            alt="popup"
+                            className="z-[9999] rounded-lg w-full max-h-[90vh] object-contain"
+                        />
+                        <button
+                            onClick={closePopup}
+                            className="top-2 right-2 absolute bg-black/75 bg-opacity-50 hover:bg-opacity-80 px-3 py-1 rounded-full text-white"
+                        >
+                            ✕
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+
 }
 
 export default function Charter_3() {

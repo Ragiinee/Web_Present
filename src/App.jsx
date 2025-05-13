@@ -607,8 +607,8 @@ export function Test_progarm() {
   ]
 
   return (
-    <div className='bg-amber-100 p-8 rounded-b-4xl w-full h-full md:h-[800px]' id='Test_progarm'>
-      <h1 className='my-2 font-black text-2xl'>การทดสอบระบบ</h1>
+    <div className='bg-amber-100 p-8 pt-36 md:pt-30 pb-30 rounded-b-4xl w-full h-full' id='Test_progarm'>
+      <h1 className='my-2 pb-6 font-black text-5xl'>การทดสอบระบบ</h1>
       <div className="flex justify-start items-center">
         {testing.map((testdata) => (
           <button
