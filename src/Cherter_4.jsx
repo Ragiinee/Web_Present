@@ -11,7 +11,7 @@ const Data_CH4 = [
             ["ชาย", 9],//edit result
             ["หญิง", 2],//edit result
             ["LGBTQIA+", 2],//edit result
-            ["ไม่ต้องการระบุ", 2],//edit result
+            ["ไม่ระบุ", 2],//edit result
         ],
         options: {
             title: "เพศของผู้ตอบแบบประเมิน",
@@ -112,7 +112,7 @@ const Data_CH4 = [
                     min: 0,
                     max: 5,
                 },
-                format: "0.00", // ให้แสดงทศนิยม 2 ตำแหน่ง (ถ้าต้องการ)
+                format: "0", // ให้แสดงทศนิยม 2 ตำแหน่ง (ถ้าต้องการ)
             },
             hAxis: {
                 textStyle: {
