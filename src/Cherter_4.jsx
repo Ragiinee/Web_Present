@@ -1,5 +1,5 @@
 import { Chart } from "react-google-charts"
-
+import { FadeInWhenVisible } from "./App"
 //data pie
 
 const Data_CH4 = [
@@ -114,6 +114,15 @@ const Data_CH4 = [
                 },
                 format: "0.00", // ให้แสดงทศนิยม 2 ตำแหน่ง (ถ้าต้องการ)
             },
+            hAxis: {
+                textStyle: {
+                    fontSize: 13, // ✅ ขนาดฟอนต์ของ Element (แนวนอน)
+                },
+            },
+            chartArea: {
+                width: '90%', // ปรับขนาดกราฟภายใน
+                height: '60%',
+            },
         }
     }
 ]
@@ -129,13 +138,15 @@ export function Chart_DATA_present() {
                     ${item.Data_id !== 5 ? "col-span-1" : "col-span-full"}
                 `}>
                     {item.Data_id !== 4 &&
-                        <Chart
-                            chartType={item.Type}
-                            data={item.data}
-                            options={item.options}
-                            width={"100%"}
-                            height={"400px"}
-                        />
+                        <div className="flex justify-center items-center">
+                            <Chart
+                                chartType={item.Type}
+                                data={item.data}
+                                options={item.options}
+                                width={"100%"}
+                                height={"400px"}
+                            />
+                        </div>
                     }
                     {item.Data_id == 4 &&
                         <div className="my-5 text-md">
@@ -161,12 +172,15 @@ export function Chart_DATA_present() {
 export function Layouy_CH4() {
     return (
         <div className="bg-gray-50 w-full h-full">
-            <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                <h1 className="mb-6 w-full font-black text-5xl text-center">
-                    ผลการประเมินระบบบริหารจัดการร้านเติมรักเพ็ทมาร์ท
-                </h1>
-                <Chart_DATA_present />
-            </div>
+            <FadeInWhenVisible>
+                <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                    <h1 className="mb-6 w-full font-black text-5xl text-center">
+
+                        ผลการประเมินระบบบริหารจัดการร้านเติมรักเพ็ทมาร์ท
+                    </h1>
+                    <Chart_DATA_present />
+                </div>
+            </FadeInWhenVisible>
         </div>
     )
 }

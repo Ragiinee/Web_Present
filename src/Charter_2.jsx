@@ -1,3 +1,4 @@
+import { FadeInWhenVisible } from "./App"
 import './card.css'
 
 const theory = [
@@ -170,9 +171,9 @@ const theory = [
 
 export function Square() {
     return (
-
         theory.map((items, index) => (
             <div className="md:col-span-1" key={index}>
+                <FadeInWhenVisible>
                 <div className="flex justify-center items-center bg-gray-50 shadow-2xl rounded-xl h-full">
                     <div className="w-full h-[500px] overflow-hidden">
                         <div className="w-full h-full card"
@@ -196,7 +197,7 @@ export function Square() {
                                 {
                                     items.back.map((detail) => (
                                         <div className="absolute inset-0 flex flex-col justify-between bg-[#ffae93]/30 p-10 rounded-xl card__back" key={index}>
-                                            <h2 className="text-black text-md text-justify">{detail.name_back}</h2>
+                                            <h2 className="mb-4 overflow-y-auto text-black text-md text-justify">{detail.name_back}</h2>
                                             <a href={detail.link} className='flex justify-center items-center'>
                                                 <button className="self-center bg-white hover:bg-[#ffae93] hover:shadow-inner mt-auto px-4 py-2 rounded-full font-semibold text-amber-800 hover:text-white cursor-pointer">
                                                     {items.id !== 5 ? "ข้อมูลเพิ่มเติม" : "ศึกษาจากห้องสมุด"}
@@ -211,9 +212,9 @@ export function Square() {
                         </div>
                     </div>
                 </div>
+                </FadeInWhenVisible>
             </div>
         ))
-
     );
 }
 
@@ -222,7 +223,9 @@ export function Layouy_CH2() {
 
     return (
         <div className="bg-gray-50 w-full h-full">
-            <h1 className="mx-4 font-black text-5xl text-center">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</h1>
+            <FadeInWhenVisible>
+                <h1 className="mx-4 font-black text-5xl text-center">ทฤษฎีและเทคโนโลยีที่เกี่ยวข้อง</h1>
+            </FadeInWhenVisible>
             <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 m-4 mt-15">
                 <Square />
             </div>

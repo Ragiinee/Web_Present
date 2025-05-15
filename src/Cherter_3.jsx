@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react"
+
+import { FadeInWhenVisible } from "./App"
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -104,7 +107,7 @@ const Data_Ch3 = [
             },
             {
                 id_desciption: 2,
-                name_desciption: "ส่วนนำเข้า",
+                name_desciption: "การออกแบบส่วนนำเข้า",
                 desciption: <Desing />,
                 desing: [//เปลี่ยน
                     {
@@ -131,7 +134,7 @@ const Data_Ch3 = [
             },
             {
                 id_desciption: 3,
-                name_desciption: "ส่วนนำออก",
+                name_desciption: "การออกแบบส่วนนำออก",
                 desciption: <Desing />,
                 desing: [
                     {
@@ -187,92 +190,94 @@ export function Layouy_CH3() {
     return (
         <div className="bg-gray-50 w-full h-full md:h-[900px]">
             <div className="flex-wrap justify-between mx-auto max-w-screen-xl">
-                <h1 className="mx-4 font-black text-5xl text-center">วิธีดำเนินการโครงการ</h1>
-                <div className="md:flex justify-between mx-4 mt-12" >
-                    {
-                        Data_Ch3.map((item) => (
-                            <button key={item.id_CH3}
-                                onClick={() => {
-                                    setActiveId_CH3(item.id_CH3); setShowDesciption_CH3(item.data); setButtomClick(['', '', '']); setDetailActiveId_CH3('')
-                                }}
-                                className={`px-6 py-6 rounded-full cursor-pointer transition-all duration-300 font-bold md:my-0 my-4 md:mx-4 mx-0 w-full
+                <FadeInWhenVisible>
+                    <h1 className="mx-4 font-black text-5xl text-center">วิธีดำเนินการโครงการ</h1>
+                    <div className="md:flex justify-between mx-4 mt-12" >
+                        {
+                            Data_Ch3.map((item) => (
+                                <button key={item.id_CH3}
+                                    onClick={() => {
+                                        setActiveId_CH3(item.id_CH3); setShowDesciption_CH3(item.data); setButtomClick(['', '', '']); setDetailActiveId_CH3('')
+                                    }}
+                                    className={`px-6 py-6 rounded-full cursor-pointer transition-all duration-300 font-bold md:my-0 my-4 md:mx-4 mx-0 w-full
                                     ${activeId_CH3 == item.id_CH3
-                                        ? "bg-amber-600 text-white shadow-xl scale-105"
-                                        : "bg-amber-100 text-gray-800 hover:bg-amber-400 hover:text-white shadow-inner"}`}>
-                                {item.name}
-                            </button>
-                        ))
-                    }
-                </div>
+                                            ? "bg-amber-600 text-white shadow-xl scale-105"
+                                            : "bg-amber-100 text-gray-800 hover:bg-amber-400 hover:text-white shadow-inner"}`}>
+                                    {item.name}
+                                </button>
+                            ))
+                        }
+                    </div>
 
-                {/*ส่วนอธิบาย*/}
-                <div className="mx-4 mt-8">
-                    {
-                        activeId_CH3 &&
-                        <div className="grid grid-cols-1 md:grid-cols-3">
-                            <div className="flex flex-col justify-between col-span-1">
-                                {
-                                    ShowDesciption_CH3.map((detail) => (
-                                        <div className="flex flex-col justify-center md:h-40" key={detail.id_desciption}>
-                                            <button className={`px-6 py-6 rounded-full cursor-pointer transition-all duration-300 font-bold m-4 
+                    {/*ส่วนอธิบาย*/}
+                    <div className="mx-4 mt-8">
+                        {
+                            activeId_CH3 &&
+                            <div className="grid grid-cols-1 md:grid-cols-3">
+                                <div className="flex flex-col justify-between col-span-1">
+                                    {
+                                        ShowDesciption_CH3.map((detail) => (
+                                            <div className="flex flex-col justify-center md:h-40" key={detail.id_desciption}>
+                                                <button className={`px-6 py-6 rounded-full cursor-pointer transition-all duration-300 font-bold m-4 
                                                 ${activeDetailId_CH3 === detail.id_desciption
-                                                    ? "bg-rose-600 text-white shadow-xl scale-105"
-                                                    : "bg-rose-100 text-gray-800 hover:bg-rose-400 hover:text-white shadow-inner"}`}
-                                                onClick={() => {
-                                                    //Class Buttom
-                                                    setDetailActiveId_CH3(detail.id_desciption);
-                                                    //Class Buttom
-                                                    setButtomClick([detail.desciption, detail.pdf_IOC, detail.pdf_form]);
-                                                    //มีอีก 2 ตัว
-                                                    NumberActivity = detail.id_desciption
-                                                }
-                                                }
-                                            >{detail.name_desciption}
-                                            </button>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                            {
-
-                            }
-                            <div className="flex flex-col justify-between gap-4 col-span-1 md:col-span-2 mx-8">
-                                <div className="col-span-1 md:col-span-2 h-full text-md text-justify leading-loose whitespace-normal">
-                                    {ButtonClick[0]}
+                                                        ? "bg-rose-600 text-white shadow-xl scale-105"
+                                                        : "bg-rose-100 text-gray-800 hover:bg-rose-400 hover:text-white shadow-inner"}`}
+                                                    onClick={() => {
+                                                        //Class Buttom
+                                                        setDetailActiveId_CH3(detail.id_desciption);
+                                                        //Class Buttom
+                                                        setButtomClick([detail.desciption, detail.pdf_IOC, detail.pdf_form]);
+                                                        //มีอีก 2 ตัว
+                                                        NumberActivity = detail.id_desciption
+                                                    }
+                                                    }
+                                                >{detail.name_desciption}
+                                                </button>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
+                                {
 
-                                {(ButtonClick[0] && activeId_CH3 == 1) &&
-                                    <div className="gap-4 grid grid-cols-2 col-span-1 md:col-span-2">
-                                        <div className="flex justify-center">
-                                            <a href={ButtonClick[1]}>
-                                                <div className="text-center">
-                                                    <p className="my-5 p-2 font-bold underline">{ButtonClick[1] !== "./PDF/Test_case.pdf" ? "แบบประเมินความสอดคล้อง (IOC)" : "แผนการทดสอบ"}  </p>
-                                                    <img
-                                                        src="https://th.bing.com/th/id/OIP.F2w3iA2aa3QIZeFH_Gi3tgHaHa?cb=iwc2&rs=1&pid=ImgDetMain"
-                                                        alt="PDF"
-                                                        className="mx-auto w-12 h-12"
-                                                    />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className="flex justify-center">
-                                            <a href={ButtonClick[2]}>
-                                                <div className="text-center">
-                                                    <p className="my-5 p-2 font-bold underline">{ButtonClick[2] == "./PDF/From1.pdf" ? "แบบสัมภาษณ์ความต้องการระบบ" : `${ButtonClick[2] == "./PDF/From2.pdf" ? "แบบประเมินความพึงพอใจ" : "การทดสอบระบบ"}`}</p>
-                                                    <img
-                                                        src={ButtonClick[2] !== "#Test_progarm" ? "https://th.bing.com/th/id/OIP.F2w3iA2aa3QIZeFH_Gi3tgHaHa?cb=iwc2&rs=1&pid=ImgDetMain" : "https://cdn-icons-png.flaticon.com/512/5710/5710191.png"}
-                                                        alt="PDF"
-                                                        className="mx-auto w-12 h-12"
-                                                    />
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
                                 }
+                                <div className="flex flex-col justify-between gap-4 col-span-1 md:col-span-2 mx-8">
+                                    <div className="col-span-1 md:col-span-2 h-full text-md text-justify leading-loose whitespace-normal">
+                                        {ButtonClick[0]}
+                                    </div>
+
+                                    {(ButtonClick[0] && activeId_CH3 == 1) &&
+                                        <div className="gap-4 grid grid-cols-2 col-span-1 md:col-span-2">
+                                            <div className="flex justify-center">
+                                                <a href={ButtonClick[1]}>
+                                                    <div className="text-center">
+                                                        <p className="my-5 p-2 font-bold underline">{ButtonClick[1] !== "./PDF/Test_case.pdf" ? "แบบประเมินความสอดคล้อง (IOC)" : "แผนการทดสอบ"}  </p>
+                                                        <img
+                                                            src="https://th.bing.com/th/id/OIP.F2w3iA2aa3QIZeFH_Gi3tgHaHa?cb=iwc2&rs=1&pid=ImgDetMain"
+                                                            alt="PDF"
+                                                            className="mx-auto w-12 h-12"
+                                                        />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div className="flex justify-center">
+                                                <a href={ButtonClick[2]}>
+                                                    <div className="text-center">
+                                                        <p className="my-5 p-2 font-bold underline">{ButtonClick[2] == "./PDF/From1.pdf" ? "แบบสัมภาษณ์ความต้องการระบบ" : `${ButtonClick[2] == "./PDF/From2.pdf" ? "แบบประเมินความพึงพอใจ" : "การทดสอบระบบ"}`}</p>
+                                                        <img
+                                                            src={ButtonClick[2] !== "#Test_progarm" ? "https://th.bing.com/th/id/OIP.F2w3iA2aa3QIZeFH_Gi3tgHaHa?cb=iwc2&rs=1&pid=ImgDetMain" : "https://cdn-icons-png.flaticon.com/512/5710/5710191.png"}
+                                                            alt="PDF"
+                                                            className="mx-auto w-12 h-12"
+                                                        />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                    }
-                </div>
+                        }
+                    </div>
+                </FadeInWhenVisible>
             </div>
         </div >
     )
@@ -375,7 +380,7 @@ export function Desing() {
                 {ImageDesing.desing.map((item, idx) => (
                     <div key={idx} className="flex justify-center items-center p-4 rounded-xl w-full h-full">
                         <div onClick={() => openPopup(item.img)}
-                            className="hover:z-10 bg-white shadow-md hover:shadow-xl mx-4 rounded-xl w-full h-full overflow-hidden hover:scale-105 transition-transform duration-300 transform"
+                            className="hover:z-10 bg-white shadow-md hover:shadow-xl mx-4 rounded-xl w-full h-full overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer transform"
                         >
                             <img
                                 src={item.img}

@@ -1,9 +1,31 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import Charter_1 from './Charter_1';
 import Charter_2 from './Charter_2';
 import Charter_3 from './Cherter_3';
 import Charter_4 from './Cherter_4';
 import Charter_5 from './Cherter_5';
+
+// animation
+export function FadeInWhenVisible({ children }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 1.5 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 
 export function Navbar() {
@@ -118,10 +140,10 @@ export function Navbar() {
               </li>
 
               <li>
-                <a href="#Test_progarm" className="block md:hover:bg-transparent hover:bg-gray-100 md:p-0 px-3 py-2 md:border-0 rounded-sm font-black text-gray-900 md:hover:text-amber-700">การทดสอบระบบ</a>
+                <a href="#Test_progarm" className="block md:hover:bg-transparent hover:bg-gray-100 md:p-0 px-3 py-2 md:border-0 rounded-sm md:font-black text-gray-900 md:hover:text-amber-700">การทดสอบระบบ</a>
               </li>
               <li>
-                <a href="#Producer" className="block md:hover:bg-transparent hover:bg-gray-100 md:p-0 px-3 py-2 md:border-0 rounded-sm font-black text-gray-900 md:hover:text-amber-700">สมาชิก</a>
+                <a href="#Producer" className="block md:hover:bg-transparent hover:bg-gray-100 md:p-0 px-3 py-2 md:border-0 rounded-sm md:font-black text-gray-900 md:hover:text-amber-700">สมาชิก</a>
               </li>
             </ul>
           </div>
@@ -248,71 +270,75 @@ export function Producer() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 p-8 h-full md:h-[420px]" id="Producer">
-
       <div className="col-span-1 md:border-r">
-        <h1 className="font-black text-2xl text-center">อาจารย์ที่ปรึกษากลุ่ม</h1>
-        <div className="flex justify-center items-center m-4">
-          <div className="relative flex justify-center items-center bg-amber-900/10 hover:bg-amber-500 shadow-inner backdrop-blur-sm rounded-full w-50 h-50 overflow-hidden">
-            <img
-              src="https://sci.vru.ac.th/assets/images/people/img_20241128092522000000_1732760722306_edit.jpg"
-              alt="teacher"
-              className="z-10 mt-20 rounded-full"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col items-center text-justify">
-          <span className="font-bold text-md">อาจารย์ณัฐรดี อนุพงค์</span>
-          <span className="text-sm">คณะวิทยาศาสตร์และเทคโนโลยี </span>
-          <span className="text-sm">สาขาวิทยาการคอมพิวเตอร์</span>
+        <FadeInWhenVisible>
 
-          <div className="flex flex-col justify-between text-sm">
-            <div className="flex m-1">
-              <span className="mx-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 text-amber-900">
-                  <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                </svg>
-              </span>
-              <a href="#" className="hover:text-amber-900">
-                natradee@vru.ac.th
-              </a>
+          <h1 className="font-black text-2xl text-center">อาจารย์ที่ปรึกษากลุ่ม</h1>
+          <div className="flex justify-center items-center m-4">
+            <div className="relative flex justify-center items-center bg-amber-900/10 hover:bg-amber-500 shadow-inner backdrop-blur-sm rounded-full w-50 h-50 overflow-hidden">
+              <img
+                src="https://sci.vru.ac.th/assets/images/people/img_20241128092522000000_1732760722306_edit.jpg"
+                alt="teacher"
+                className="z-10 mt-20 rounded-full"
+              />
             </div>
           </div>
-        </div>
-      </div>
+          <div className="flex flex-col items-center text-justify">
+            <span className="font-bold text-md">อาจารย์ณัฐรดี อนุพงค์</span>
+            <span className="text-sm">คณะวิทยาศาสตร์และเทคโนโลยี </span>
+            <span className="text-sm">สาขาวิทยาการคอมพิวเตอร์</span>
 
+            <div className="flex flex-col justify-between text-sm">
+              <div className="flex m-1">
+                <span className="mx-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 text-amber-900">
+                    <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                  </svg>
+                </span>
+                <a href="#" className="hover:text-amber-900">
+                  natradee@vru.ac.th
+                </a>
+              </div>
+            </div>
+          </div>
+        </FadeInWhenVisible>
+      </div>
       <div className="col-span-2">
-        <h1 className="font-black text-2xl text-center">สมาชิกผู้จัดทำ</h1>
-        <div className="gap-4 grid grid-cols-1 md:grid-cols-4 p-4">
-          {members.map((member) => (
-            <div key={member.id} className="col-span-1">
-              <button onClick={() => setActiveId(member.id)} className="w-full cursor-pointer">
-                <div className="flex justify-center items-center m-4">
-                  <div className={`relative rounded-full overflow-hidden  duration-300 ${activeId === member.id ? "w-50 h-50" : "w-36 h-36"}`}>
-                    <img
-                      src={member.img}
-                      alt={member.name}
-                      className={`z-10  rounded-full transition-all duration-300 grayscale ${activeId === member.id ? "grayscale-0" : "grayscale"}`}
-                    />
+        <FadeInWhenVisible>
+          <h1 className="font-black text-2xl text-center">สมาชิกผู้จัดทำ</h1>
+          <div className="gap-4 grid grid-cols-1 md:grid-cols-4 p-4">
+            {members.map((member) => (
+              <div key={member.id} className="col-span-1">
+                <button onClick={() => setActiveId(member.id)} className="w-full cursor-pointer">
+                  <div className="flex justify-center items-center m-4">
+                    <div className={`relative rounded-full overflow-hidden  duration-300 ${activeId === member.id ? "w-50 h-50" : "w-36 h-36"}`}>
+                      <img
+                        src={member.img}
+                        alt={member.name}
+                        className={`z-10  rounded-full transition-all duration-300 grayscale ${activeId === member.id ? "grayscale-0" : "grayscale"}`}
+                      />
+                    </div>
                   </div>
-                </div>
-              </button>
+                </button>
 
-              {activeId === member.id && (
-                <div className="mt-2">
-                  <span className="flex justify-center font-bold text-md">{member.name}</span>
-                  <div className="flex justify-center items-center mt-1 text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 w-5 h-5 text-amber-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                    </svg>
-                    <a href="#" className="text-sm">{member.email}</a>
+                {activeId === member.id && (
+                  <div className="mt-2">
+                    <span className="flex justify-center font-bold text-md">{member.name}</span>
+                    <div className="flex justify-center items-center mt-1 text-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 w-5 h-5 text-amber-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                      </svg>
+                      <a href="#" className="text-sm">{member.email}</a>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </FadeInWhenVisible>
       </div>
-    </div>
+
+    </div >
   );
 }
 //function start 
@@ -608,82 +634,84 @@ export function Test_progarm() {
 
   return (
     <div className='bg-amber-100 p-8 pt-36 md:pt-30 pb-30 rounded-b-4xl w-full h-full' id='Test_progarm'>
-      <h1 className='my-2 pb-6 font-black text-5xl'>การทดสอบระบบ</h1>
-      <div className="flex justify-start items-center">
-        {testing.map((testdata) => (
-          <button
-            key={testdata.id}
-            onClick={() => {
-              // console.log(testdata.id);
-              setActiveId(testdata.id)
-              setDataDescription(text_desciption)
-              setVideoPlay('video/demo_system.mp4')
-            }
-            }
-            className={`m-4 px-6 py-3 rounded-xl transition-all duration-300 ${activeId === testdata.id
-              ? "bg-amber-900 text-white"
-              : "bg-white text-black border border-amber-500"
-              }`}
-          >
-            {testdata.name}
-          </button>
-
-        ))
-        }
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-5 mt-5">
-        <div className="col-span-1 md:mr-4 mb-4 md:mb-0">
-          <h1 className='mb-2 ml-4 font-bold text-xl text-center'>
-            เมนูการทดสอบ
-          </h1>
-          <aside id="sidebar-multi-level-sidebar" className="w-full transition-transform sm:translate-x-0" aria-label="Sidebar" >
-            <div className="bg-gray-50 px-3 py-4 pb-8 h-full md:h-[500px] overflow-y-auto">
-              {
-                testing.filter((items) => items.id === activeId)
-                  .map((data) => (
-                    <ul key={data.id} className='space-y-2 font-medium'  >
-                      {data.menu.map((detail) => (
-                        <li key={detail.menu_id} /*onClick={() => console.log(detail) }*/
-                        >
-                          {
-                            <DropdownMenu
-                              icons={detail.icon}
-                              text={detail.description}
-                              sub_menu_funtion={detail.sub_menu}
-                              setDataDescription={setDataDescription}
-                              Description={detail.desciption}
-                              VideoPlay_Array={detail.link}
-                              setVideo={setVideoPlay}
-                            />
-                          }
-                        </li>
-                      ))}
-                    </ul>
-                  ))
+      <FadeInWhenVisible>
+        <h1 className='my-2 pb-6 font-black text-5xl'>การทดสอบระบบ</h1>
+        <div className="flex justify-start items-center">
+          {testing.map((testdata) => (
+            <button
+              key={testdata.id}
+              onClick={() => {
+                // console.log(testdata.id);
+                setActiveId(testdata.id)
+                setDataDescription(text_desciption)
+                setVideoPlay('video/demo_system.mp4')
               }
-            </div>
-          </aside>
+              }
+              className={`m-4 px-6 py-3 rounded-xl transition-all duration-300 ${activeId === testdata.id
+                ? "bg-amber-900 text-white"
+                : "bg-white text-black border border-amber-500"
+                }`}
+            >
+              {testdata.name}
+            </button>
+
+          ))
+          }
         </div>
-        <div className="col-span-3">
-          <div className="relative w-full h-full object-cover">
-            <iframe
-              src={`${VideoPlay}?autoplay=1&muted=1`}
-              className="rounded-lg w-full h-full object-cover"
-              allow="autoplay"
-              allowFullScreen
-            ></iframe>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 mt-5">
+          <div className="col-span-1 md:mr-4 mb-4 md:mb-0">
+            <h1 className='mb-2 ml-4 font-bold text-xl text-center'>
+              เมนูการทดสอบ
+            </h1>
+            <aside id="sidebar-multi-level-sidebar" className="w-full transition-transform sm:translate-x-0" aria-label="Sidebar" >
+              <div className="bg-gray-50 px-3 py-4 pb-8 h-full md:h-[500px] overflow-y-auto">
+                {
+                  testing.filter((items) => items.id === activeId)
+                    .map((data) => (
+                      <ul key={data.id} className='space-y-2 font-medium'  >
+                        {data.menu.map((detail) => (
+                          <li key={detail.menu_id} /*onClick={() => console.log(detail) }*/
+                          >
+                            {
+                              <DropdownMenu
+                                icons={detail.icon}
+                                text={detail.description}
+                                sub_menu_funtion={detail.sub_menu}
+                                setDataDescription={setDataDescription}
+                                Description={detail.desciption}
+                                VideoPlay_Array={detail.link}
+                                setVideo={setVideoPlay}
+                              />
+                            }
+                          </li>
+                        ))}
+                      </ul>
+                    ))
+                }
+              </div>
+            </aside>
           </div>
-        </div>
-        <div className="col-span-1 mt-4 md:mt-0 md:ml-4 h-full">
-          <div className="bg-gray-50 p-4 h-full">
-            <div className="h-full overflow-auto">
-              <Desciption data={dataDescription} />
+          <div className="col-span-3">
+            <div className="relative w-full h-full object-cover">
+              <iframe
+                src={`${VideoPlay}?autoplay=1&muted=1`}
+                className="rounded-lg w-full h-full object-cover"
+                allow="autoplay"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
-        </div>
-      </div >
-      {/*grid video present*/}
+          <div className="col-span-1 mt-4 md:mt-0 md:ml-4 h-full">
+            <div className="bg-gray-50 p-4 h-full">
+              <div className="h-full overflow-auto">
+                <Desciption data={dataDescription} />
+              </div>
+            </div>
+          </div>
+        </div >
+        {/*grid video present*/}
+      </FadeInWhenVisible>
     </div >
   );
 }
@@ -708,14 +736,27 @@ export function Home_page() {
       {/* เนื้อหาที่อยู่ด้านหน้าวิดีโอ */}
 
       <div className="z-10 relative flex-wrap justify-between items-center mx-auto p-4 max-w-screen-xl h-full">
-        <h1 className="my-8 pt-16 font-bold text-black text-4xl">ระบบเติมรัก ❤ เพ็ทมาร์ท 🐈🐕</h1>
-        <div className='flex mt-10 text-xl text-justify md:text-balance text-pretty'>
+        <motion.h1 className="my-8 pt-16 font-bold text-black text-4xl"
+          initial={{ opacity: 0, y: -60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}>
+          ระบบเติมรัก ❤ เพ็ทมาร์ท 🐈🐕
+        </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0 }}
+          className='flex mt-10 text-xl text-justify md:text-balance text-pretty'>
           <p className='h-full indent-8 leading-loose whitespace-normal'>
             โครงการเป็นส่วนหนึ่งของวิชาการพัฒนานวัตกรรมคอมพิวเตอร์และบริการชุมชน โครงการนี้มุ่งพัฒนาระบบบริหารจัดการร้านขายอาหารสัตว์เลี้ยงเติมรักเพ็ทมาร์ท      ตั้งอยู่ที่ตลาดสี่มุมเมือง จังหวัดปทุมธานี ซึ่งเผชิญปัญหาการจัดการสต็อกที่ไม่มีประสิทธิภาพ เช่น การขาดแคลน หรือ      ล้นสต็อก สินค้าหมดอายุ และความซับซ้อนของระบบเดิมที่ทำให้พนักงานใช้งานยาก ส่งผลต่อการจัดการข้อมูลในระบบ โครงการจึงมีเป้าหมายเพื่อปรับปรุงระบบหลังบ้าน (Back-End) และหน้าบ้าน (Front-End) โดยพัฒนาอินเทอร์เฟซที่ใช้งานง่ายและระบบจัดการสต็อกที่มีประสิทธิภาพ รวมถึงการเชื่อมต่อกับ LINE Official Account (LineOA) เพื่อให้ลูกค้าสามารถดูคะแนนสะสม ประวัติการสั่งซื้อ และจัดการข้อมูลสมาชิกได้สะดวกยิ่งขึ้น
             ระบบใหม่พัฒนาด้วยเทคโนโลยี Node.js และ Electron.js สำหรับการจัดการ Back end และแอปพลิเคชันเดสก์ท็อป, JavaScript, HTML&CSS และ Tailwind CSS สำหรับส่วนติดต่อผู้ใช้ที่ทันสมัย, Supabase สำหรับการจัดการข้อมูลแบบเรียลไทม์ และ line messaging api สำหรับการสื่อสารกับลูกค้า วัตถุประสงค์หลัก ได้แก่ การวิเคราะห์ปัญหาการจัดการสต็อก, ออกแบบระบบที่ตอบโจทย์การใช้งาน, และประเมินความพึงพอใจของผู้ใช้ ผลลัพธ์ที่คาดหวังคือระบบที่ช่วยลดความผิดพลาดในการจัดการสต็อก ลดต้นทุนที่ไม่จำเป็น เพิ่มประสิทธิภาพการดำเนินงาน และยกระดับความพึงพอใจของลูกค้า
           </p>
-        </div>
-        <div className='group'>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2 }}
+          className='group'>
           <a href="#Charter_1">
             <button className='flex justify-center items-center bg-amber-400 hover:bg-rose-900 my-20 rounded-full w-56 h-20 text-rose-900 hover:text-white cursor-pointer'>
               ดูเพิ่มเติม
@@ -724,7 +765,7 @@ export function Home_page() {
               </svg>
             </button>
           </a>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -755,6 +796,7 @@ export default function App() {
         <Test_progarm />
         <Producer />
       </main>
+
 
       {/* Footer */}
       <Footer />

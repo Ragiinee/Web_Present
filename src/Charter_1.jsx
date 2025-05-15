@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Chart } from "react-google-charts"
 
+import {FadeInWhenVisible} from "./App"
+
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -136,7 +138,7 @@ export function DesciptionCH1({ Id }) {
                     <p className="font-semibold underline">
                         ขอบเขตด้านการพัฒนาระบบ
                     </p>
-                    <ul>ระบบบริหารจัดการร้านค้าที่คณะผู้จัดทำตามความต้องการระบบของเจ้าของร้าน ได้ออกแบบระบบเป็น 2 ส่วนหลัก ๆ คือ 
+                    <ul>ระบบบริหารจัดการร้านค้าที่คณะผู้จัดทำตามความต้องการระบบของเจ้าของร้าน ได้ออกแบบระบบเป็น 2 ส่วนหลัก ๆ คือ
                         <li>1. ระบบ Point of Sale:POS ใช้งานโดย เจ้าของและพนักงาน</li>
                         <li>2. ระบบ Customer relationship management:CRM ผ่าน LINE OA ใช้งานโดย สมาชิกร้านค้า</li>
                     </ul>
@@ -185,9 +187,10 @@ export function Layouy_CH1() {
 
     return (
         <div className="bg-amber-100 pb-18 w-full h-full md:h-[1200px] lg:h-[1000px]">
+            <FadeInWhenVisible>
             <div className="flex-wrap justify-between items-center mx-auto pt-36 md:pt-30 max-w-screen-xl">
                 <h1 className="mx-4 font-black text-5xl">{showH1}</h1>
-                <div className="md:flex flex-row justify-between items-center mt-15">
+                <div className="md:flex flex-row justify-between items-center m-6 mt-15">
                     {
                         data_cherter_1.map((item, index) => {
                             //check (true,false) for is Active
@@ -197,12 +200,12 @@ export function Layouy_CH1() {
                                 <button
                                     key={index}
                                     onClick={() => { setShowH1(item.name_CH1); settextDescription(item) }} // เมื่อกดจะ set ข้อความ
-                                    className={`px-6 py-6 rounded-full cursor-pointer transition-all duration-300 font-bold m-4
+                                    className={`px-6 py-6 rounded-full cursor-pointer transition-all duration-300 font-bold  w-full my-4 md:mx-4 mx-0
                                     ${isActive
                                             ? "bg-amber-600 text-white shadow-xl scale-105"
                                             : "bg-white text-gray-800 hover:bg-amber-400 hover:text-white shadow-inner"}`}
                                 >
-                                    {item.name_CH1}
+                                        {item.name_CH1}
                                 </button>
                             )
                         })
@@ -217,6 +220,7 @@ export function Layouy_CH1() {
                     />
                 )}
             </div>
+            </FadeInWhenVisible>
         </div>
     );
 }
