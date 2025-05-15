@@ -306,8 +306,7 @@ export function Require_system() {
                             .map((Desciption) => (
                                 <div className="grid grid-cols-1 md:grid-cols-3" key={Desciption.id_desciption} >
                                     {Desciption.data.map((index, num) => (
-                                        <div className="col-span-1 mt-4" key={num} onClick={() => (console.log(index)
-                                        )}>
+                                        <div className="col-span-1 mt-4" key={num} >
                                             <div className="flex justify-center items-center">
                                                 <img src={index.img} alt="preson" className="shadow-inner rounded-full w-40" />
                                             </div>
@@ -332,9 +331,6 @@ export function Require_system() {
 let NumberActivity = null
 export function Desing() {
 
-    console.log(NumberActivity);
-
-
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },
@@ -357,6 +353,21 @@ export function Desing() {
     const ImageDesing = Datadesing.data.find((item) => item.id_desciption === NumberActivity)
 
     const [popupImg, setPopupImg] = useState(null);
+
+    useEffect(() => {
+        if (popupImg) {
+            // ป้องกัน scroll
+            document.body.style.overflow = "hidden";
+        } else {
+            // เปิด scroll อีกครั้ง
+            document.body.style.overflow = "";
+        }
+
+        // Cleanup เมื่อ component unmount หรือ popup ปิด
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [popupImg]);
 
     const openPopup = (img) => setPopupImg(img);
     const closePopup = () => setPopupImg(null);
@@ -402,11 +413,11 @@ export function Desing() {
                         <img
                             src={popupImg}
                             alt="popup"
-                            className="z-[9999] rounded-lg w-full max-h-[90vh] object-contain"
+                            className="z-[9999] rounded-lg w-full max-h-[90vh] object-contain overflow-hidden"
                         />
                         <button
                             onClick={closePopup}
-                            className="top-2 right-2 absolute bg-black/75 bg-opacity-50 hover:bg-opacity-80 px-3 py-1 rounded-full text-white"
+                            className="top-2 right-2 absolute bg-black/75 bg-opacity-50 hover:bg-opacity-80 px-3 py-1 rounded-full w-10 h-10 text-white"
                         >
                             ✕
                         </button>
