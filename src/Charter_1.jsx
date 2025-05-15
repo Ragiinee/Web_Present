@@ -54,7 +54,7 @@ const rows = [
     ["6", "จัดทำเอกสารคู่มือการใช้งาน", "จัดทำคู่มือการใช้งาน", new Date(2025, 1), new Date(2025, 2), null, 100, "4,5"],
     ["7", "ส่งมอบชิ้นงาน", "ส่งมอบชิ้นงานให้กลุ่มตัวอย่าง", new Date(2025, 2), new Date(2025, 3), null, 100, "4,6"],
     ["8", "ประเมินผลชิ้นงาน", "ประเมินผลชิ้นงาน", new Date(2025, 3), new Date(2025, 4), null, 100, "7"],
-    ["9", "จัดทำรูปเล่ม", "จัดทำรูปเล่ม", new Date(2024, 8), new Date(2025, 2), null, 100, "1"],
+    ["9", "จัดทำรูปเล่ม", "จัดทำรูปเล่ม", new Date(2024, 8), new Date(2025, 4), null, 100, "1"],
 ];
 
 export const data = [columns, ...rows];
@@ -185,7 +185,7 @@ export function Layouy_CH1() {
 
     return (
         <div className="bg-amber-100 pb-18 w-full h-full md:h-[1200px] lg:h-[1000px]">
-            <div className="flex-warp justify-between items-center mx-auto pt-36 md:pt-30 max-w-screen-xl">
+            <div className="flex-wrap justify-between items-center mx-auto pt-36 md:pt-30 max-w-screen-xl">
                 <h1 className="mx-4 font-black text-5xl">{showH1}</h1>
                 <div className="md:flex flex-row justify-between items-center mt-15">
                     {

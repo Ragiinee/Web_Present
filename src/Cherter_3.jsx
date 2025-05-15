@@ -186,7 +186,7 @@ export function Layouy_CH3() {
 
     return (
         <div className="bg-gray-50 w-full h-full md:h-[900px]">
-            <div className="flex-warp justify-between mx-auto max-w-screen-xl">
+            <div className="flex-wrap justify-between mx-auto max-w-screen-xl">
                 <h1 className="mx-4 font-black text-5xl text-center">วิธีดำเนินการโครงการ</h1>
                 <div className="md:flex justify-between mx-4 mt-12" >
                     {
